@@ -1,0 +1,10 @@
+.logo-unad {
+    display: block;
+    width: 100%; /* Ocupa el 100% del ancho del container */
+    max-height: 250px; /* Ajusta este valor si quieres que sea aún más alta */
+    object-fit: contain; /* Evita que la imagen se estire feo */
+    margin-left: auto;
+    margin-right: auto;
+    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1)); /* Un toque sutil de sombra para que resalte */
+    border-radius: 50%;
+}

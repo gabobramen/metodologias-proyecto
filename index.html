@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caja de Herramientas PM - UNAD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <style>
+        :root { --unad-blue: #003049; --unad-orange: #f77f00; --unad-gold: #fcbf49; }
+        body { font-family: 'Roboto', sans-serif; background-color: #eaeef1; }
+        .logo-unad { display: block; width: 100%; max-height: 180px; object-fit: contain; margin-bottom: 1.5rem; }
+        .hero-section { background: white; padding: 30px 0; border-bottom: 4px solid var(--unad-orange); }
+        
+        .tool-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid var(--unad-orange); margin-bottom: 15px; }
+        .accordion-button { background-color: #e7f1ff !important; color: var(--unad-blue) !important; font-weight: bold; }
+        .info-section { padding: 10px 20px; border-bottom: 1px solid #f0f0f0; }
+        .info-title { color: var(--unad-blue); font-weight: bold; font-size: 0.9rem; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+        .info-title i { color: var(--unad-orange); }
+        .info-text { font-size: 0.85rem; color: #444; margin-bottom: 0; }
+        .relacion-box { background-color: #f8f9fa; border-top: 2px solid var(--unad-orange); }
+
+        footer { background-color: var(--unad-orange); color: white; padding: 25px 0; margin-top: 40px; }
+        .footer-link { color: white; text-decoration: none; font-weight: bold; }
+
+        #virtual-assistant { position: fixed; bottom: 100px; right: 20px; z-index: 1000; }
+        .ai-bubble { background: var(--unad-blue); color: white; padding: 15px; border-radius: 20px 20px 0 20px; max-width: 250px; display: none; margin-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .ai-avatar { width: 60px; height: 60px; background: var(--unad-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; border: 3px solid white; }
+        
+        @media print { .no-print { display: none; } .accordion-collapse { display: block !important; } }
+    </style>
+</head>
+<body>
+
+<div id="content-to-print">
+    <header class="hero-section text-center">
+        <div class="container">
+            <img src="/img/logo_unad.png" alt="Logo UNAD" class="logo-unad">
+            <h1 class="h2 fw-bold" style="color: var(--unad-blue);">Herramientas para la Gestión de Proyectos</h1>
+            <p class="mb-1"><strong>Curso:</strong> Metodologías de Gestión de Proyectos (212056)</p>
+            
+            <div class="mt-3 p-3 bg-light rounded border mx-auto" style="max-width: 600px;">
+                <p class="mb-1"><strong>Grupo Colaborativo:</strong></p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <span><i class="bi bi-person-fill"></i> Gabriel Brango Mendoza</span>
+                    <span><i class="bi bi-person-fill"></i> Andrés Altamar Martínez</span>
+                    <span><i class="bi bi-person-fill"></i> Rafael Sarmiento</span>
+                </div>
+            </div>
+
+            <div class="no-print mt-4">
+                <button onclick="downloadPDF()" class="btn btn-danger px-4 shadow-sm"><i class="bi bi-file-earmark-pdf-fill"></i> Descargar PDF Completo</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section class="mb-5 p-4 bg-white rounded shadow-sm border-start border-4 border-primary">
+            <h4 class="text-primary fw-bold">Introducción</h4>
+            <p class="small text-muted">El presente trabajo desarrolla una "Caja de Herramientas" técnica para la gestión de proyectos de Ingeniería Industrial, orientada a la eficiencia y calidad operativa según los estándares de la Etapa 3 del curso.</p>
+            
+            <h4 class="text-primary fw-bold mt-4">Objetivos</h4>
+            <ul class="small text-muted">
+                <li>Gestionar proyectos mediante herramientas técnicas alineadas a criterios de planificación y calidad.</li>
+                <li>Investigar y aplicar las 12 herramientas fundamentales de gestión de proyectos.</li>
+            </ul>
+        </section>
+
+        <div class="accordion" id="accordionHerramientas">
+            </div>
+
+        <section class="mt-5 p-4 bg-white rounded shadow-sm">
+            <h4 class="text-primary fw-bold">Referencias Bibliográficas (Normas APA)</h4>
+            <div class="small text-muted">
+                <p>Ballesteros Quintero, L. (2021). Implementación y práctica de scrum... Revista Panorama, 15(29). https://doi.org/10.15765/pnrm.v15i29.2538</p>
+                <p>Faraji, A., et al. (2022). Applicability-Compatibility Analysis of PMBOK Seventh Edition... Buildings, 12(2). https://doi.org/10.3390/buildings12020210</p>
+                <p>Viznay, J.; Álvarez, J. (2022). Selección de las herramientas informáticas... PACHA, Revista de estudios contemporáneos.</p>
+            </div>
+        </section>
+    </main>
+</div>
+
+<footer class="no-print">
+    <div class="container text-center">
+        <p class="mb-1">© Marca Registrada - Elaborada por: <strong>Gabriel Brango Mendoza</strong></p>
+        <p class="mb-2">Est. Ingeniería de Sistemas - CEAD, Sahagún</p>
+        <div class="d-flex justify-content-center align-items-center gap-2">
+            <i class="bi bi-whatsapp"></i> <a href="https://wa.me/573136104504" target="_blank" class="footer-link">3136104504</a>
+        </div>
+    </div>
+</footer>
+
+<div id="virtual-assistant" class="no-print">
+    <div class="ai-bubble" id="ai-text">¡Hola Gabriel! He restaurado el bloque de integrantes y añadido las referencias APA. ¡Éxito en tu entrega!</div>
+    <div class="ai-avatar" onclick="toggleAI()"><i class="bi bi-robot text-white"></i></div>
+</div>
+
+<script>
+    const hData = [
+        { id: "1", t: "Análisis de Viabilidad", i: "bi-graph-up", d: "Estudio previo de factibilidad técnica y económica.", u: "Decidir la inversión inicial.", a: "Integración, Costos", p: "Inicio", r: "EL SEMÁFORO" },
+        { id: "2", t: "Diagramas Causa – Efecto", i: "bi-diagram-3", d: "Identificación de causas raíz de problemas.", u: "Solucionar fallas de calidad.", a: "Calidad", p: "M&C", r: "LA LUPA" },
+        { id: "3", t: "GANTT / CPM / PERT", i: "bi-calendar3", d: "Programación de tareas y rutas críticas.", u: "Planificar duración y dependencias.", a: "Tiempo", p: "Planificación", r: "EL CALENDARIO" },
+        { id: "4", t: "Análisis de Riesgos", i: "bi-shield-exclamation", d: "Evaluación de incertidumbres.", u: "Minimizar amenazas.", a: "Riesgos", p: "Planificación", r: "CINTURÓN DE SEGURIDAD" },
+        { id: "5", t: "Análisis de Stakeholders", i: "bi-people", d: "Identificación de interesados.", u: "Gestionar apoyo e influencia.", a: "Interesados", p: "Inicio", r: "EL RADAR" },
+        { id: "6", t: "EDT (WBS)", i: "bi-hierarchy", d: "Desglose del alcance del trabajo.", u: "Organizar paquetes de trabajo.", a: "Alcance", p: "Planificación", r: "EL PLANO" },
+        { id: "7", t: "Lecciones Aprendidas", i: "bi-journal-text", d: "Registro de experiencias pasadas.", u: "Mejora continua.", a: "Integración", p: "Cierre", r: "LA BITÁCORA" },
+        { id: "8", t: "Gestión de Roles", i: "bi-person-badge", d: "Definición de responsabilidades.", u: "Asignar autoridad.", a: "Recursos", p: "Ejecución", r: "AJEDREZ" },
+        { id: "9", t: "Control y Monitoreo", i: "bi-eye", d: "Seguimiento del desempeño.", u: "Detectar desviaciones.", a: "Integración", p: "M&C", r: "EL GPS" },
+        { id: "10", t: "Plan de Comunicaciones", i: "bi-chat-dots", d: "Distribución de información.", u: "Garantizar flujo de datos.", a: "Comunicaciones", p: "Planificación", r: "SISTEMA NERVIOSO" },
+        { id: "11", t: "Plan de Hitos", i: "bi-flag", d: "Puntos clave de control.", u: "Medir progreso de alto nivel.", a: "Tiempo", p: "Planificación", r: "MOJONES" },
+        { id: "12", t: "Ajuste del Calendario", i: "bi-clock-history", d: "Optimización de cronograma.", u: "Nivelar recursos.", a: "Tiempo", p: "M&C", r: "EL RELOJERO" }
+    ];
+
+    const container = document.getElementById('accordionHerramientas');
+    hData.forEach(h => {
+        container.innerHTML += `
+            <div class="tool-card">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${h.id}">
+                        <i class="bi ${h.i} me-2"></i> HERRAMIENTA: ${h.t}
+                    </button>
+                </h2>
+                <div id="collapse${h.id}" class="accordion-collapse collapse" data-bs-parent="#accordionHerramientas">
+                    <div class="accordion-body p-0">
+                        <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> ¿En qué consiste?</p><p class="info-text">${h.d}</p></div>
+                        <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> ¿Para qué se utiliza?</p><p class="info-text">${h.u}</p></div>
+                        <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> Área de Conocimiento</p><p class="info-text">${h.a}</p></div>
+                        <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> Grupo de Procesos</p><p class="info-text">${h.p}</p></div>
+                        <div class="info-section relacion-box"><p class="info-title"><i class="bi bi-tools"></i> Relación</p><p class="info-text"><strong>${h.r}</strong></p></div>
+                    </div>
+                </div>
+            </div>`;
+    });
+
+    function toggleAI() { const b = document.getElementById('ai-text'); b.style.display = b.style.display === 'block' ? 'none' : 'block'; }
+    function downloadPDF() {
+        const opt = { margin: 0.3, filename: 'Trabajo_Etapa3_UNAD.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } };
+        html2pdf().set(opt).from(document.getElementById('content-to-print')).save();
+    }
+</script>
+</body>
+</html>
