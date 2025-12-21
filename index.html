@@ -21,7 +21,19 @@
         .info-title { color: var(--unad-blue); font-weight: bold; font-size: 0.9rem; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
         .info-title i { color: var(--unad-orange); }
         .info-text { font-size: 0.85rem; color: #444; margin-bottom: 0; }
-        .relacion-box { background-color: #f8f9fa; border-top: 2px solid var(--unad-orange); }
+        
+        /* Estilo mejorado para la caja de relación con imagen */
+        .relacion-box { background-color: #f8f9fa; border-top: 2px solid var(--unad-orange); padding: 15px; }
+        .img-relacion { 
+            width: 100%; 
+            max-width: 280px; 
+            height: 160px; 
+            object-fit: cover;
+            border-radius: 8px; 
+            margin-top: 10px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            display: block;
+        }
 
         footer { background-color: var(--unad-orange); color: white; padding: 25px 0; margin-top: 40px; }
         .footer-link { color: white; text-decoration: none; font-weight: bold; }
@@ -38,7 +50,7 @@
 <div id="content-to-print">
     <header class="hero-section text-center">
         <div class="container">
-            
+            <img src="https://i.ibb.co/ZzB6ZzF/image-beece9.png" alt="Logo UNAD" class="logo-unad">
             <h1 class="h2 fw-bold" style="color: var(--unad-blue);">Herramientas para la Gestión de Proyectos</h1>
             <p class="mb-1"><strong>Curso:</strong> Metodologías de Gestión de Proyectos (212056)</p>
             
@@ -69,8 +81,7 @@
             </ul>
         </section>
 
-        <div class="accordion" id="accordionHerramientas">
-            </div>
+        <div class="accordion" id="accordionHerramientas"></div>
 
         <section class="mt-5 p-4 bg-white rounded shadow-sm">
             <h4 class="text-primary fw-bold">Referencias Bibliográficas (Normas APA)</h4>
@@ -94,30 +105,30 @@
 </footer>
 
 <div id="virtual-assistant" class="no-print">
-    <div class="ai-bubble" id="ai-text">¡Hola Gabriel! He restaurado el bloque de integrantes y añadido las referencias APA. ¡Éxito en tu entrega!</div>
+    <div class="ai-bubble" id="ai-text">¡Listo Gabriel! He añadido imágenes dinámicas a la sección de relación de cada herramienta.</div>
     <div class="ai-avatar" onclick="toggleAI()"><i class="bi bi-robot text-white"></i></div>
 </div>
 
 <script>
     const hData = [
-        { id: "1", t: "Análisis de Viabilidad", i: "bi-graph-up", d: "Estudio previo de factibilidad técnica y económica.", u: "Decidir la inversión inicial.", a: "Integración, Costos", p: "Inicio", r: "EL SEMÁFORO" },
-        { id: "2", t: "Diagramas Causa – Efecto", i: "bi-diagram-3", d: "Identificación de causas raíz de problemas.", u: "Solucionar fallas de calidad.", a: "Calidad", p: "M&C", r: "LA LUPA" },
-        { id: "3", t: "GANTT / CPM / PERT", i: "bi-calendar3", d: "Programación de tareas y rutas críticas.", u: "Planificar duración y dependencias.", a: "Tiempo", p: "Planificación", r: "EL CALENDARIO" },
-        { id: "4", t: "Análisis de Riesgos", i: "bi-shield-exclamation", d: "Evaluación de incertidumbres.", u: "Minimizar amenazas.", a: "Riesgos", p: "Planificación", r: "CINTURÓN DE SEGURIDAD" },
-        { id: "5", t: "Análisis de Stakeholders", i: "bi-people", d: "Identificación de interesados.", u: "Gestionar apoyo e influencia.", a: "Interesados", p: "Inicio", r: "EL RADAR" },
-        { id: "6", t: "EDT (WBS)", i: "bi-hierarchy", d: "Desglose del alcance del trabajo.", u: "Organizar paquetes de trabajo.", a: "Alcance", p: "Planificación", r: "EL PLANO" },
-        { id: "7", t: "Lecciones Aprendidas", i: "bi-journal-text", d: "Registro de experiencias pasadas.", u: "Mejora continua.", a: "Integración", p: "Cierre", r: "LA BITÁCORA" },
-        { id: "8", t: "Gestión de Roles", i: "bi-person-badge", d: "Definición de responsabilidades.", u: "Asignar autoridad.", a: "Recursos", p: "Ejecución", r: "AJEDREZ" },
-        { id: "9", t: "Control y Monitoreo", i: "bi-eye", d: "Seguimiento del desempeño.", u: "Detectar desviaciones.", a: "Integración", p: "M&C", r: "EL GPS" },
-        { id: "10", t: "Plan de Comunicaciones", i: "bi-chat-dots", d: "Distribución de información.", u: "Garantizar flujo de datos.", a: "Comunicaciones", p: "Planificación", r: "SISTEMA NERVIOSO" },
-        { id: "11", t: "Plan de Hitos", i: "bi-flag", d: "Puntos clave de control.", u: "Medir progreso de alto nivel.", a: "Tiempo", p: "Planificación", r: "MOJONES" },
-        { id: "12", t: "Ajuste del Calendario", i: "bi-clock-history", d: "Optimización de cronograma.", u: "Nivelar recursos.", a: "Tiempo", p: "M&C", r: "EL RELOJERO" }
+        { id: "1", t: "Análisis de Viabilidad", i: "bi-graph-up", d: "Estudio previo de factibilidad técnica y económica.", u: "Decidir la inversión inicial.", a: "Integración, Costos", p: "Inicio", r: "EL SEMÁFORO", img: "https://images.unsplash.com/photo-1554178286-db40851cbd39?auto=format&fit=crop&q=80&w=400" },
+        { id: "2", t: "Diagramas Causa – Efecto", i: "bi-diagram-3", d: "Identificación de causas raíz de problemas.", u: "Solucionar fallas de calidad.", a: "Calidad", p: "M&C", r: "LA LUPA", img: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=400" },
+        { id: "3", t: "GANTT / CPM / PERT", i: "bi-calendar3", d: "Programación de tareas y rutas críticas.", u: "Planificar duración y dependencias.", a: "Tiempo", p: "Planificación", r: "EL CALENDARIO", img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=400" },
+        { id: "4", t: "Análisis de Riesgos", i: "bi-shield-exclamation", d: "Evaluación de incertidumbres.", u: "Minimizar amenazas.", a: "Riesgos", p: "Planificación", r: "CINTURÓN DE SEGURIDAD", img: "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&q=80&w=400" },
+        { id: "5", t: "Análisis de Stakeholders", i: "bi-people", d: "Identificación de interesados.", u: "Gestionar apoyo e influencia.", a: "Interesados", p: "Inicio", r: "EL RADAR", img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=400" },
+        { id: "6", t: "EDT (WBS)", i: "bi-hierarchy", d: "Desglose del alcance del trabajo.", u: "Organizar paquetes de trabajo.", a: "Alcance", p: "Planificación", r: "EL PLANO", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=400" },
+        { id: "7", t: "Lecciones Aprendidas", i: "bi-journal-text", d: "Registro de experiencias pasadas.", u: "Mejora continua.", a: "Integración", p: "Cierre", r: "LA BITÁCORA", img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=400" },
+        { id: "8", t: "Gestión de Roles", i: "bi-person-badge", d: "Definición de responsabilidades.", u: "Asignar autoridad.", a: "Recursos", p: "Ejecución", r: "AJEDREZ", img: "https://images.unsplash.com/photo-1529692236671-f1f6e9460272?auto=format&fit=crop&q=80&w=400" },
+        { id: "9", t: "Control y Monitoreo", i: "bi-eye", d: "Seguimiento del desempeño.", u: "Detectar desviaciones.", a: "Integración", p: "M&C", r: "EL GPS", img: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=400" },
+        { id: "10", t: "Plan de Comunicaciones", i: "bi-chat-dots", d: "Distribución de información.", u: "Garantizar flujo de datos.", a: "Comunicaciones", p: "Planificación", r: "SISTEMA NERVIOSO", img: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=400" },
+        { id: "11", t: "Plan de Hitos", i: "bi-flag", d: "Puntos clave de control.", u: "Medir progreso de alto nivel.", a: "Tiempo", p: "Planificación", r: "MOJONES", img: "https://images.unsplash.com/photo-1444491741275-3747c53c99b4?auto=format&fit=crop&q=80&w=400" },
+        { id: "12", t: "Ajuste del Calendario", i: "bi-clock-history", d: "Optimización de cronograma.", u: "Nivelar recursos.", a: "Tiempo", p: "M&C", r: "EL RELOJERO", img: "https://images.unsplash.com/photo-1508921234172-b68ed335b3e6?auto=format&fit=crop&q=80&w=400" }
     ];
 
     const container = document.getElementById('accordionHerramientas');
     hData.forEach(h => {
         container.innerHTML += `
-            <div class="tool-card">
+            <div class="tool-card shadow-sm">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${h.id}">
                         <i class="bi ${h.i} me-2"></i> HERRAMIENTA: ${h.t}
@@ -129,7 +140,10 @@
                         <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> ¿Para qué se utiliza?</p><p class="info-text">${h.u}</p></div>
                         <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> Área de Conocimiento</p><p class="info-text">${h.a}</p></div>
                         <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> Grupo de Procesos</p><p class="info-text">${h.p}</p></div>
-                        <div class="info-section relacion-box"><p class="info-title"><i class="bi bi-tools"></i> Relación</p><p class="info-text"><strong>${h.r}</strong></p></div>
+                        <div class="info-section relacion-box">
+                            <p class="info-title"><i class="bi bi-tools"></i> Relación: <strong>${h.r}</strong></p>
+                            <img src="${h.img}" class="img-relacion" alt="${h.r}">
+                        </div>
                     </div>
                 </div>
             </div>`;
@@ -137,7 +151,13 @@
 
     function toggleAI() { const b = document.getElementById('ai-text'); b.style.display = b.style.display === 'block' ? 'none' : 'block'; }
     function downloadPDF() {
-        const opt = { margin: 0.3, filename: 'Trabajo_Etapa3_UNAD.pdf', image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 }, jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } };
+        const opt = { 
+            margin: 0.3, 
+            filename: 'Trabajo_Etapa3_UNAD.pdf', 
+            image: { type: 'jpeg', quality: 0.98 }, 
+            html2canvas: { scale: 2, useCORS: true }, 
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } 
+        };
         html2pdf().set(opt).from(document.getElementById('content-to-print')).save();
     }
 </script>
