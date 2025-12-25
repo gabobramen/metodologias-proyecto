@@ -1,329 +1,220 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Caja de Herramientas PM - UNAD-2025</title>
-
+    <title>Caja de Herramientas PM - UNAD</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-   
-
+    
     <style>
-
-        :root { --unad-blue: #003049; --unad-orange: #f77f00; --unad-gold: #fcbf49; }
-
-        body { font-family: 'Roboto', sans-serif; background-color: #eaeef1; }
-
-        .logo-unad { display: block; width: 100%; max-height: 180px; object-fit: contain; margin-bottom: 1.5rem; }
-
-        .hero-section { background: white; padding: 30px 0; border-bottom: 4px solid var(--unad-orange); }
-
-       
-
-        .tool-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid var(--unad-orange); margin-bottom: 15px; }
-
-        .accordion-button { background-color: #e7f1ff !important; color: var(--unad-blue) !important; font-weight: bold; }
-
-        .info-section { padding: 10px 20px; border-bottom: 1px solid #f0f0f0; }
-
-        .info-title { color: var(--unad-blue); font-weight: bold; font-size: 0.9rem; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
-
-        .info-title i { color: var(--unad-orange); }
-
-        .info-text { font-size: 0.85rem; color: #444; margin-bottom: 0; }
-
-       
-
-        /* Estilo mejorado para la caja de relación con imagen */
-
-        .relacion-box { background-color: #f8f9fa; border-top: 2px solid var(--unad-orange); padding: 15px; }
-
-        .img-relacion {
-
-            width: 100%;
-
-            max-width: 280px;
-
-            height: 160px;
-
-            object-fit: cover;
-
-            border-radius: 8px;
-
-            margin-top: 10px;
-
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-
-            display: block;
-
+        :root {
+            --puzzle-blue: #4a90e2;
+            --puzzle-orange: #f39c12;
+            --puzzle-green: #2ecc71;
+            --puzzle-yellow: #f1c40f;
+            --unad-blue: #003049;
+            --unad-orange: #f77f00;
         }
 
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', sans-serif; color: #333; }
 
+        /* Header Principal */
+        .hero-header {
+            background: white;
+            padding: 50px 0;
+            border-bottom: 6px solid var(--unad-orange);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .integrantes-box {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            display: inline-block;
+            margin-top: 25px;
+            border: 1px dashed var(--unad-blue);
+        }
 
-        footer { background-color: var(--unad-orange); color: white; padding: 25px 0; margin-top: 40px; }
+        /* Sección de Introducción y Objetivos */
+        .intro-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-top: 5px solid var(--unad-blue);
+        }
 
-        .footer-link { color: white; text-decoration: none; font-weight: bold; }
+        /* Estilo Fichas Puzzle */
+        .ficha-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+        }
+        .ficha-container:hover { transform: translateY(-5px); }
 
+        .puzzle-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 18px;
+        }
 
+        .puzzle-piece {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-radius: 12px;
+            position: relative;
+            flex-shrink: 0;
+            z-index: 2;
+        }
 
-        #virtual-assistant { position: fixed; bottom: 100px; right: 20px; z-index: 1000; }
+        .puzzle-piece::after {
+            content: "";
+            position: absolute;
+            right: -10px;
+            top: 17px;
+            width: 20px;
+            height: 20px;
+            background: inherit;
+            border-radius: 50%;
+        }
 
-        .ai-bubble { background: var(--unad-blue); color: white; padding: 15px; border-radius: 20px 20px 0 20px; max-width: 250px; display: none; margin-bottom: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .puzzle-content {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 15px 25px;
+            border-radius: 0 15px 15px 0;
+            margin-left: 8px;
+            flex-grow: 1;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.02);
+        }
 
-        .ai-avatar { width: 60px; height: 60px; background: var(--unad-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; cursor: pointer; border: 3px solid white; }
+        .p-blue { background-color: var(--puzzle-blue); }
+        .p-orange { background-color: var(--puzzle-orange); }
+        .p-green { background-color: var(--puzzle-green); }
+        .p-yellow { background-color: var(--puzzle-yellow); }
 
-       
-
-        @media print { .no-print { display: none; } .accordion-collapse { display: block !important; } }
-
+        /* Footer */
+        footer {
+            background-color: var(--unad-blue);
+            color: white;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        .footer-link { color: var(--unad-orange); text-decoration: none; font-weight: bold; }
     </style>
-
 </head>
-
 <body>
 
-
-
-<div id="content-to-print">
-
-    <header class="hero-section text-center">
-
-        <div class="container">
-
-            <img src="/img/logo_unad.png" alt="Logo UNAD" class="logo-unad">
-
-            <h1 class="h2 fw-bold" style="color: var(--unad-blue);">Herramientas para la Gestión de Proyectos</h1>
-
-            <p class="mb-1"><strong>Curso:</strong> Metodologías de Gestión de Proyectos (212056)</p>
-
-           
-
-            <div class="mt-3 p-3 bg-light rounded border mx-auto" style="max-width: 600px;">
-
-                <p class="mb-1"><strong>Grupo Colaborativo:</strong></p>
-
-                <div class="d-flex justify-content-center gap-3 flex-wrap">
-
-                    <span><i class="bi bi-person-fill"></i> Gabriel Brango Mendoza</span>
-
-                    <span><i class="bi bi-person-fill"></i> Andrés Altamar Martínez</span>
-
-                    <span><i class="bi bi-person-fill"></i> Rafael Sarmiento</span>
-
-                </div>
-
+<header class="hero-header text-center">
+    <div class="container">
+        <h1 class="fw-bold" style="color: var(--unad-blue);">CAJA DE HERRAMIENTAS TÉCNICAS</h1>
+        <h4 class="text-muted">Metodologías de Gestión de Proyectos</h4>
+        
+        <div class="integrantes-box">
+            <p class="small text-uppercase fw-bold text-muted mb-2">Autores del Proyecto:</p>
+            <div class="d-flex gap-4 justify-content-center flex-wrap">
+                <span><i class="bi bi-person-fill text-primary"></i> Gabriel Brango Mendoza</span>
+                <span><i class="bi bi-person-fill text-primary"></i> Nahual Nicolas Ulloa Loaiza</span>
+                <span><i class="bi bi-person-fill text-primary"></i> Jefferson Prieto Carmona</span>
             </div>
-
-
-
-            <div class="no-print mt-4">
-
-                <button onclick="downloadPDF()" class="btn btn-danger px-4 shadow-sm"><i class="bi bi-file-earmark-pdf-fill"></i> Descargar PDF Completo</button>
-
-            </div>
-
         </div>
-
-    </header>
-
-
-
-    <main class="container my-5">
-
-        <section class="mb-5 p-4 bg-white rounded shadow-sm border-start border-4 border-primary">
-
-            <h4 class="text-primary fw-bold">Introducción</h4>
-
-            <p class="small text-muted">El presente trabajo desarrolla una "Caja de Herramientas" técnica para la gestión de proyectos de Ingeniería Industrial, orientada a la eficiencia y calidad operativa según los estándares de la Etapa 3 del curso.</p>
-
-           
-
-            <h4 class="text-primary fw-bold mt-4">Objetivos</h4>
-
-            <ul class="small text-muted">
-
-                <li>Gestionar proyectos mediante herramientas técnicas alineadas a criterios de planificación y calidad.</li>
-
-                <li>Investigar y aplicar las 12 herramientas fundamentales de gestión de proyectos.</li>
-
-            </ul>
-
-        </section>
-
-
-
-        <div class="accordion" id="accordionHerramientas"></div>
-
-
-
-        <section class="mt-5 p-4 bg-white rounded shadow-sm">
-
-            <h4 class="text-primary fw-bold">Referencias Bibliográficas (Normas APA)</h4>
-
-            <div class="small text-muted">
-
-                <p>Ballesteros Quintero, L. (2021). Implementación y práctica de scrum... Revista Panorama, 15(29). https://doi.org/10.15765/pnrm.v15i29.2538</p>
-
-                <p>Faraji, A., et al. (2022). Applicability-Compatibility Analysis of PMBOK Seventh Edition... Buildings, 12(2). https://doi.org/10.3390/buildings12020210</p>
-
-                <p>Viznay, J.; Álvarez, J. (2022). Selección de las herramientas informáticas... PACHA, Revista de estudios contemporáneos.</p>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
-
-
-
-<footer class="no-print">
-
-    <div class="container text-center">
-
-        <p class="mb-1">© Marca Registrada - Elaborada por: <strong>Gabriel Brango Mendoza</strong></p>
-
-        <p class="mb-2">Est. Ingeniería de Sistemas - CEAD, Sahagún</p>
-
-        <div class="d-flex justify-content-center align-items-center gap-2">
-
-            <i class="bi bi-whatsapp"></i> <a href="https://wa.me/573136104504" target="_blank" class="footer-link">3136104504</a>
-
-        </div>
-
     </div>
+</header>
 
+<main class="container my-5">
+    <section class="intro-section shadow-sm">
+        <div class="row">
+            <div class="col-md-6 border-end">
+                <h5 class="fw-bold text-primary"><i class="bi bi-file-earmark-text"></i> Introducción</h5>
+                <p class="small text-muted">
+                    Esta "Caja de Herramientas" técnica ha sido desarrollada para la gestión de proyectos de Ingeniería Industrial, 
+                    alineada con los estándares de la Etapa 3 del curso. Se enfoca en la aplicación de metodologías 
+                    de diseño centrado en el usuario (UX) y análisis de usabilidad para optimizar sistemas interactivos.
+                </p>
+            </div>
+            <div class="col-md-6 ps-md-4">
+                <h5 class="fw-bold text-primary"><i class="bi bi-bullseye"></i> Objetivos</h5>
+                <ul class="small text-muted">
+                    <li>Gestionar proyectos mediante herramientas técnicas alineadas a criterios de planificación y calidad.</li>
+                    <li>Investigar y aplicar las 12 herramientas fundamentales de gestión según los grupos de procesos PMBOK.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div id="contenedor-herramientas"></div>
+</main>
+
+<footer>
+    <div class="container text-center">
+        <p class="mb-1"><strong>UNAD - Universidad Nacional Abierta y a Distancia</strong></p>
+        <p class="small mb-3">Curso: Interacción Humano Computador (202016916)</p>
+        <div class="border-top border-secondary pt-3 mt-3">
+            <p class="mb-0">© 2025 - Elaborado por: Gabriel Brango Mendoza</p>
+            <a href="https://wa.me/573136104504" class="footer-link"><i class="bi bi-whatsapp"></i> Contacto: 3136104504</a>
+        </div>
+    </div>
 </footer>
 
-
-
-<div id="virtual-assistant" class="no-print">
-
-    <div class="ai-bubble" id="ai-text">¡Listo se ha añadido imágenes dinámicas a la sección de relación de cada herramienta.</div>
-
-    <div class="ai-avatar" onclick="toggleAI()"><i class="bi bi-robot text-white"></i></div>
-
-</div>
-
-
-
 <script>
-
-    const hData = [
-
-        { id: "1", t: "Análisis de Viabilidad", i: "bi-graph-up", d: "Estudio previo de factibilidad técnica y económica.", u: "Decidir la inversión inicial.", a: "Integración, Costos", p: "Inicio", r: "EL SEMÁFORO", img: "https://images.unsplash.com/photo-1554178286-db40851cbd39?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "2", t: "Diagramas Causa – Efecto", i: "bi-diagram-3", d: "Identificación de causas raíz de problemas.", u: "Solucionar fallas de calidad.", a: "Calidad", p: "M&C", r: "LA LUPA", img: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "3", t: "GANTT / CPM / PERT", i: "bi-calendar3", d: "Programación de tareas y rutas críticas.", u: "Planificar duración y dependencias.", a: "Tiempo", p: "Planificación", r: "EL CALENDARIO", img: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "4", t: "Análisis de Riesgos", i: "bi-shield-exclamation", d: "Evaluación de incertidumbres.", u: "Minimizar amenazas.", a: "Riesgos", p: "Planificación", r: "CINTURÓN DE SEGURIDAD", img: "https://images.unsplash.com/photo-1504194104404-433180773017?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "5", t: "Análisis de Stakeholders", i: "bi-people", d: "Identificación de interesados.", u: "Gestionar apoyo e influencia.", a: "Interesados", p: "Inicio", r: "EL RADAR", img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "6", t: "EDT (WBS)", i: "bi-hierarchy", d: "Desglose del alcance del trabajo.", u: "Organizar paquetes de trabajo.", a: "Alcance", p: "Planificación", r: "EL PLANO", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "7", t: "Lecciones Aprendidas", i: "bi-journal-text", d: "Registro de experiencias pasadas.", u: "Mejora continua.", a: "Integración", p: "Cierre", r: "LA BITÁCORA", img: "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "8", t: "Gestión de Roles", i: "bi-person-badge", d: "Definición de responsabilidades.", u: "Asignar autoridad.", a: "Recursos", p: "Ejecución", r: "AJEDREZ", img: "https://images.unsplash.com/photo-1529692236671-f1f6e9460272?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "9", t: "Control y Monitoreo", i: "bi-eye", d: "Seguimiento del desempeño.", u: "Detectar desviaciones.", a: "Integración", p: "M&C", r: "EL GPS", img: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "10", t: "Plan de Comunicaciones", i: "bi-chat-dots", d: "Distribución de información.", u: "Garantizar flujo de datos.", a: "Comunicaciones", p: "Planificación", r: "SISTEMA NERVIOSO", img: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "11", t: "Plan de Hitos", i: "bi-flag", d: "Puntos clave de control.", u: "Medir progreso de alto nivel.", a: "Tiempo", p: "Planificación", r: "MOJONES", img: "https://images.unsplash.com/photo-1444491741275-3747c53c99b4?auto=format&fit=crop&q=80&w=400" },
-
-        { id: "12", t: "Ajuste del Calendario", i: "bi-clock-history", d: "Optimización de cronograma.", u: "Nivelar recursos.", a: "Tiempo", p: "M&C", r: "EL RELOJERO", img: "https://images.unsplash.com/photo-1508921234172-b68ed335b3e6?auto=format&fit=crop&q=80&w=400" }
-
+    const herramientas = [
+        { id: 1, t: "Análisis de Viabilidad", d: "Estudio previo de factibilidad técnica y económica.", u: "Decidir la inversión inicial.", a: "Integración, Costos", p: "Inicio", r: "EL SEMÁFORO" },
+        { id: 2, t: "Diagramas Causa – Efecto", d: "Identificación de causas raíz de problemas.", u: "Solucionar fallas de calidad.", a: "Calidad", p: "M&C", r: "LA LUPA" },
+        { id: 3, t: "GANTT / CPM / PERT", d: "Programación de tareas y rutas críticas.", u: "Planificar duración y dependencias.", a: "Tiempo", p: "Planificación", r: "EL CALENDARIO" },
+        { id: 4, t: "Análisis de Riesgos", d: "Evaluación de incertidumbres.", u: "Minimizar amenazas.", a: "Riesgos", p: "Planificación", r: "CINTURÓN DE SEGURIDAD" },
+        { id: 5, t: "Análisis de Stakeholders", d: "Identificación de interesados.", u: "Gestionar apoyo e influencia.", a: "Interesados", p: "Inicio", r: "EL RADAR" },
+        { id: 6, t: "EDT (WBS)", d: "Desglose del alcance del trabajo.", u: "Organizar paquetes de trabajo.", a: "Alcance", p: "Planificación", r: "EL PLANO" },
+        { id: 7, t: "Lecciones Aprendidas", d: "Registro de experiencias pasadas.", u: "Mejora continua.", a: "Integración", p: "Cierre", r: "LA BITÁCORA" },
+        { id: 8, t: "Gestión de Roles", d: "Definición de responsabilidades.", u: "Asignar autoridad.", a: "Recursos", p: "Ejecución", r: "AJEDREZ" },
+        { id: 9, t: "Control y Monitoreo", d: "Seguimiento del desempeño.", u: "Detectar desviaciones.", a: "Integración", p: "M&C", r: "EL GPS" },
+        { id: 10, t: "Plan de Comunicaciones", d: "Distribución de información.", u: "Garantizar flujo de datos.", a: "Comunicaciones", p: "Planificación", r: "SISTEMA NERVIOSO" },
+        { id: 11, t: "Plan de Hitos", d: "Puntos clave de control.", u: "Medir progreso de alto nivel.", a: "Tiempo", p: "Planificación", r: "MOJONES" },
+        { id: 12, t: "Ajuste del Calendario", d: "Optimización de cronograma.", u: "Nivelar recursos.", a: "Tiempo", p: "M&C", r: "EL RELOJERO" }
     ];
 
+    const contenedor = document.getElementById('contenedor-herramientas');
 
-
-    const container = document.getElementById('accordionHerramientas');
-
-    hData.forEach(h => {
-
-        container.innerHTML += `
-
-            <div class="tool-card shadow-sm">
-
-                <h2 class="accordion-header">
-
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${h.id}">
-
-                        <i class="bi ${h.i} me-2"></i> HERRAMIENTA: ${h.t}
-
-                    </button>
-
-                </h2>
-
-                <div id="collapse${h.id}" class="accordion-collapse collapse" data-bs-parent="#accordionHerramientas">
-
-                    <div class="accordion-body p-0">
-
-                        <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> ¿En qué consiste?</p><p class="info-text">${h.d}</p></div>
-
-                        <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> ¿Para qué se utiliza?</p><p class="info-text">${h.u}</p></div>
-
-                        <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> Área de Conocimiento</p><p class="info-text">${h.a}</p></div>
-
-                        <div class="info-section"><p class="info-title"><i class="bi bi-caret-right-fill"></i> Grupo de Procesos</p><p class="info-text">${h.p}</p></div>
-
-                        <div class="info-section relacion-box">
-
-                            <p class="info-title"><i class="bi bi-tools"></i> Relación: <strong>${h.r}</strong></p>
-
-                            <img src="${h.img}" class="img-relacion" alt="${h.r}">
-
-                        </div>
-
-                    </div>
-
+    herramientas.forEach(h => {
+        contenedor.innerHTML += `
+            <div class="ficha-container">
+                <div class="d-flex align-items-center mb-4">
+                    <div style="width:10px; height:40px; background:var(--unad-orange); margin-right:15px; border-radius:5px;"></div>
+                    <h3 class="fw-bold mb-0" style="color: var(--unad-blue)">FICHA ${h.id}. ${h.t.toUpperCase()}</h3>
+                </div>
+                
+                <div class="puzzle-row">
+                    <div class="puzzle-piece p-blue">1</div>
+                    <div class="puzzle-content"><strong>¿En qué consiste?</strong><br><span class="small text-muted">${h.d}</span></div>
                 </div>
 
-            </div>`;
+                <div class="puzzle-row">
+                    <div class="puzzle-piece p-orange">2</div>
+                    <div class="puzzle-content"><strong>¿Para qué se utiliza?</strong><br><span class="small text-muted">${h.u}</span></div>
+                </div>
 
+                <div class="puzzle-row">
+                    <div class="puzzle-piece p-green">3</div>
+                    <div class="puzzle-content"><strong>Área de Conocimiento:</strong><br><span class="small text-muted">${h.a} | <b>Proceso:</b> ${h.p}</span></div>
+                </div>
+
+                <div class="puzzle-row">
+                    <div class="puzzle-piece p-yellow">4</div>
+                    <div class="puzzle-content"><strong>Relación:</strong><br><span class="badge bg-dark">${h.r}</span></div>
+                </div>
+            </div>
+        `;
     });
-
-
-
-    function toggleAI() { const b = document.getElementById('ai-text'); b.style.display = b.style.display === 'block' ? 'none' : 'block'; }
-
-    function downloadPDF() {
-
-        const opt = {
-
-            margin: 0.3,
-
-            filename: 'Trabajo_Etapa3_UNAD.pdf',
-
-            image: { type: 'jpeg', quality: 0.98 },
-
-            html2canvas: { scale: 2, useCORS: true },
-
-            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-
-        };
-
-        html2pdf().set(opt).from(document.getElementById('content-to-print')).save();
-
-    }
-
 </script>
 
 </body>
-
 </html>
